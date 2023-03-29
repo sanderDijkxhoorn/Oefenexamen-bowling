@@ -25,13 +25,25 @@
 
     <div class="row">
         <div class="col-6">
-            {{-- Naam van de klant --}}
+            {{-- Volledige naam van de klant --}}
             <h1>
                 Reserveringen van {{ $reserveringen[0]->voornaam }} {{ $reserveringen[0]->tussenvoegsel }} {{
                 $reserveringen[0]->achternaam }}
             </h1>
         </div>
 
+
+        {{-- Zoekbalk --}}
+        <form action="{{ route('reserveringen.index') }}" method="GET">
+            <div class="col-6">
+                <div class="input-group mb-3">
+                    <input type="date" class="form-control" name="date" placeholder="Datum" aria-label="Datum"
+                        aria-describedby="button-addon2">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Zoeken</button>
+                </div>
+            </div>
+        </form>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
