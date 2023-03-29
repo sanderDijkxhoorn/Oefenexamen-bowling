@@ -51,4 +51,25 @@ class ReserveringController extends Controller
         return view('reserveringen.index', compact('reserveringen'));
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        // Selecteer alle PakketOptie
+        $pakketOpties = PakketOptie::all();
+
+        // Check of er wel opties zijn
+        if ($pakketOpties->isEmpty()) {
+            // Opties zijn leeg error naar index
+            return redirect()->route('reserveringen.index')->with('error', 'Er zijn geen opties gevonden');
+        }
+
+        // Return de view met de reservering id ($id) en de opties
+        return view('reserveringen.edit', compact('id', 'pakketOpties'));
+    }
+
 }
