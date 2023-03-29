@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('reservering', function (Blueprint $table) {
+        Schema::create('reserverings', function (Blueprint $table) {
             // Id
             $table->id();
 
             // Persoon id
             $table->foreignId('persoon_id')->constrained('persoon');
 
-            // Pakket optie id
-            $table->foreignId('pakket_optie_id')->constrained('pakket_optie');
+            // Pakket optie id nullable
+            $table->foreignId('pakket_optie_id')->nullable()->constrained('pakket_optie');
 
             // Reserverings nummer
             $table->string('reserverings_nummer', 10);
@@ -39,8 +39,8 @@ return new class extends Migration
             // AantalVolwassenen
             $table->integer('aantal_volwassenen');
 
-            // AantalKinderen
-            $table->integer('aantal_kinderen');
+            // AantalKinderen nullable
+            $table->integer('aantal_kinderen')->nullable();
 
             // Timestamp
             $table->timestamps();
@@ -52,6 +52,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('reservering');
+        Schema::dropIfExists('reserverings');
     }
 };
