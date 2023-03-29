@@ -14,9 +14,14 @@
 </head>
 
 <body>
+    {{-- Alert (error) --}}
+    @if (session('error'))
+    <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
+    </div>
+    @endif
+
     <h1>Detail Optiepakket</h1>
-
-
     {{-- Form --}}
     <form action="{{ route('reserveringen.update', $id) }}" method="POST">
         @csrf

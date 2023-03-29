@@ -84,6 +84,13 @@ class ReserveringController extends Controller
     {
         // Zet de nieuwe geslecteerde opties in de database
         $reservering = Reservering::find($id);
+
+        // Check of er kinderen aanwezig zijn als vrijgezellenfeest (id 4) is gekozen dan alert dat "Het optiepakket vrijgezellenfeest is niet bedoelt voor kinderen"
+        if ($request->input('pakket_optie_id') == 4 && $reservering->aantal_kinderen > 0) {
+            // Return naar de index met een error message
+            return redirect()->route('reserveringen.edit', $id)->with('error', 'Het optiepakket vrijgezellenfeest is niet bedoelt voor kinderen');
+        }
+
         $reservering->pakket_optie_id = $request->input('pakket_optie_id');
         $reservering->save();
 
