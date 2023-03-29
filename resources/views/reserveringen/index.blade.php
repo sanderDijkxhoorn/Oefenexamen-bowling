@@ -45,6 +45,45 @@
         </form>
     </div>
 
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Naam</th>
+                <th scope="col">Datum</th>
+                <th scope="col">Aantal uren</th>
+                <th scope="col">Begin tijd</th>
+                <th scope="col">Eind tijd</th>
+                <th scope="col">Aantal volwassenen</th>
+                <th scope="col">Aantal kinderen</th>
+                <th scope="col">Optiepakket</th>
+                <th scope="col">Wijzigen</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{-- Loop door de reserveringen --}}
+            @foreach ($reserveringen as $reservering)
+            <tr>
+                {{-- Volledige naam --}}
+                <td>{{ $reservering->voornaam }} {{ $reservering->tussenvoegsel }} {{ $reservering->achternaam }}</td>
+                <td>{{ $reservering->datum }}</td>
+                <td>{{ $reservering->aantal_uren }}</td>
+                <td>{{ $reservering->begin_tijd }}</td>
+                <td>{{ $reservering->eind_tijd }}</td>
+                <td>{{ $reservering->aantal_volwassenen }}</td>
+                <td>{{ $reservering->aantal_kinderen }}</td>
+                <td>{{ $reservering->naam }}</td>
+
+                {{-- Edit knop --}}
+                <td>
+                    <a href="{{ route('reserveringen.edit', $reservering->id) }}" class="btn btn-primary">Wijzigen</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous">
     </script>
