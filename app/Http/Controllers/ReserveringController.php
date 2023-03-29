@@ -72,4 +72,22 @@ class ReserveringController extends Controller
         return view('reserveringen.edit', compact('id', 'pakketOpties'));
     }
 
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+
+    public function update(Request $request, $id)
+    {
+        // Zet de nieuwe geslecteerde opties in de database
+        $reservering = Reservering::find($id);
+        $reservering->pakket_optie_id = $request->input('pakket_optie_id');
+        $reservering->save();
+
+        // Return naar de index met een success message
+        return redirect()->route('reserveringen.index')->with('success', 'Reservering is succesvol aangepast');
+    }
 }
